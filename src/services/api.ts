@@ -1,4 +1,4 @@
-import { Todo, CreateTodoRequest, UpdateTodoRequest, TodoFilters, TodoSort, TodoApiResponse, TodoStats, Priority, TaskStatus } from '@/types/todo'
+import { Todo, CreateTodoRequest, UpdateTodoRequest, TodoApiResponse, TodoStats, Priority, TaskStatus } from '@/types/todo'
 import { generateId } from '@/lib/utils'
 
 /**
