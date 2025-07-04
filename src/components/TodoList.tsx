@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Todo, UpdateTodoRequest, Priority, TaskStatus } from '@/types/todo'
 import { TodoForm } from '@/components/TodoForm'
 import { Button } from '@/components/ui/button'
@@ -59,7 +59,7 @@ interface TodoItemProps {
  * @param onUpdateTodo - Callback when todo is updated
  * @param onDeleteTodo - Callback when todo is deleted
  */
-function TodoItem({ todo, onToggleStatus, onUpdateTodo, onDeleteTodo }: TodoItemProps) {
+function TodoItem({ todo, onToggleStatus, onUpdateTodo: _onUpdateTodo, onDeleteTodo }: TodoItemProps) {
   const [isEditing, setIsEditing] = useState(false)
   const [isExpanded, setIsExpanded] = useState(false)
   const [isLoading, setIsLoading] = useState(false)

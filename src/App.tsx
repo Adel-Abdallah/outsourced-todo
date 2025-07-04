@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { TodoProvider } from '@/contexts/TodoContext'
 import { TodoApp } from '@/components/TodoApp'
 import { ToastProvider, Toaster } from '@/components/ui/toast'

@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { TodoStats as TodoStatsType } from '@/types/todo'
 import { CheckCircle, Circle, AlertCircle, Clock, TrendingUp } from 'lucide-react'
 

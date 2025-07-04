@@ -112,65 +112,7 @@ function getSampleTodos(): Todo[] {
   ]
 }
 
-/**
- * Filter and sort todos
- */
-function filterAndSortTodos(todos: Todo[], filters: TodoFilters, sort: TodoSort): Todo[] {
-  let filtered = [...todos]
 
-  // Apply filters
-  if (filters.status) {
-    filtered = filtered.filter(todo => todo.status === filters.status)
-  }
-
-  if (filters.priority) {
-    filtered = filtered.filter(todo => todo.priority === filters.priority)
-  }
-
-  if (filters.search) {
-    const searchLower = filters.search.toLowerCase()
-    filtered = filtered.filter(todo =>
-      todo.title.toLowerCase().includes(searchLower) ||
-      (todo.description && todo.description.toLowerCase().includes(searchLower))
-    )
-  }
-
-  // Apply sorting
-  filtered.sort((a, b) => {
-    let aVal: any, bVal: any
-
-    switch (sort.field) {
-      case 'priority':
-        const priorityOrder = { high: 1, medium: 2, low: 3 }
-        aVal = priorityOrder[a.priority]
-        bVal = priorityOrder[b.priority]
-        break
-      case 'title':
-        aVal = a.title.toLowerCase()
-        bVal = b.title.toLowerCase()
-        break
-      case 'createdAt':
-        aVal = a.createdAt.getTime()
-        bVal = b.createdAt.getTime()
-        break
-      case 'updatedAt':
-        aVal = a.updatedAt.getTime()
-        bVal = b.updatedAt.getTime()
-        break
-      default:
-        aVal = a.createdAt.getTime()
-        bVal = b.createdAt.getTime()
-    }
-
-    if (sort.direction === 'asc') {
-      return aVal < bVal ? -1 : aVal > bVal ? 1 : 0
-    } else {
-      return aVal > bVal ? -1 : aVal < bVal ? 1 : 0
-    }
-  })
-
-  return filtered
-}
 
 /**
  * Calculate statistics from todos
