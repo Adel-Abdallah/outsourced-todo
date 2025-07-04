@@ -27,10 +27,9 @@ function getTodosFromStorage(): Todo[] {
   try {
     const stored = localStorage.getItem(STORAGE_KEY)
     if (!stored) {
-      // Initialize with sample data
-      const sampleTodos = getSampleTodos()
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(sampleTodos))
-      return sampleTodos
+      // Start with an empty array if no todos exist
+      localStorage.setItem(STORAGE_KEY, JSON.stringify([]))
+      return []
     }
     const todos = JSON.parse(stored)
     // Convert date strings back to Date objects
@@ -42,7 +41,7 @@ function getTodosFromStorage(): Todo[] {
     }))
   } catch (error) {
     console.error('Error reading todos from localStorage:', error)
-    return getSampleTodos()
+    return []
   }
 }
 
@@ -57,62 +56,6 @@ function saveTodosToStorage(todos: Todo[]): void {
     throw new ApiError('Failed to save todos', 500)
   }
 }
-
-/**
- * Get sample todos for initial data
- */
-function getSampleTodos(): Todo[] {
-  return [
-    {
-      id: '1',
-      title: 'Complete project proposal',
-      description: 'Finish writing the project proposal document for the client meeting',
-      priority: Priority.HIGH,
-      status: TaskStatus.PENDING,
-      createdAt: new Date('2024-01-15T10:30:00'),
-      updatedAt: new Date('2024-01-15T10:30:00'),
-    },
-    {
-      id: '2',
-      title: 'Review code changes',
-      description: 'Review and approve the pull request for the new feature',
-      priority: Priority.MEDIUM,
-      status: TaskStatus.PENDING,
-      createdAt: new Date('2024-01-15T11:00:00'),
-      updatedAt: new Date('2024-01-15T11:00:00'),
-    },
-    {
-      id: '3',
-      title: 'Update documentation',
-      description: 'Update the API documentation with new endpoints',
-      priority: Priority.LOW,
-      status: TaskStatus.COMPLETED,
-      createdAt: new Date('2024-01-14T09:00:00'),
-      updatedAt: new Date('2024-01-14T15:30:00'),
-      completedAt: new Date('2024-01-14T15:30:00'),
-    },
-    {
-      id: '4',
-      title: 'Fix login bug',
-      description: 'Investigate and fix the login issue reported by users',
-      priority: Priority.HIGH,
-      status: TaskStatus.PENDING,
-      createdAt: new Date('2024-01-15T12:00:00'),
-      updatedAt: new Date('2024-01-15T12:00:00'),
-    },
-    {
-      id: '5',
-      title: 'Prepare presentation',
-      description: 'Create slides for the quarterly business review',
-      priority: Priority.MEDIUM,
-      status: TaskStatus.PENDING,
-      createdAt: new Date('2024-01-15T13:00:00'),
-      updatedAt: new Date('2024-01-15T13:00:00'),
-    },
-  ]
-}
-
-
 
 /**
  * Calculate statistics from todos
