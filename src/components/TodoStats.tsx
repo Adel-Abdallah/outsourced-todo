@@ -1,4 +1,3 @@
-
 import { TodoStats as TodoStatsType } from '@/types/todo'
 import { CheckCircle, Circle, AlertCircle, Clock, TrendingUp } from 'lucide-react'
 
@@ -46,7 +45,7 @@ export function TodoStats({ stats }: TodoStatsProps) {
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+    <div>
       <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
         <TrendingUp className="h-5 w-5 mr-2 text-navy-700" />
         Statistics

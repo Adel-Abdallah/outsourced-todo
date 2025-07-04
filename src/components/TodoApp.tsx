@@ -7,6 +7,7 @@ import { TodoStats } from '@/components/TodoStats'
 import { TodoFilters } from '@/components/TodoFilters'
 import { Button } from '@/components/ui/button'
 import { useToast } from '@/components/ui/toast'
+import { CollapsiblePanel } from '@/components/ui/CollapsiblePanel'
 
 /**
  * TodoApp component
@@ -87,13 +88,17 @@ export function TodoApp() {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Left Column - Stats and Filters */}
           <div className="lg:col-span-1 space-y-6">
-            <TodoStats stats={state.stats} />
-            <TodoFilters
-              filters={state.filters}
-              sort={state.sort}
-              onFiltersChange={actions.setFilters}
-              onSortChange={actions.setSort}
-            />
+            <CollapsiblePanel title="Statistics">
+              <TodoStats stats={state.stats} />
+            </CollapsiblePanel>
+            <CollapsiblePanel title="Filters">
+              <TodoFilters
+                filters={state.filters}
+                sort={state.sort}
+                onFiltersChange={actions.setFilters}
+                onSortChange={actions.setSort}
+              />
+            </CollapsiblePanel>
           </div>
 
           {/* Right Column - Todo List */}
@@ -174,9 +179,11 @@ export function TodoApp() {
                 <p className="text-gray-600 mb-4">
                   Get started by adding your first todo item.
                 </p>
-                <Button onClick={handleAddTodo}>
-                  Add Your First Todo
-                </Button>
+                {!showAddForm && (
+                  <Button onClick={handleAddTodo}>
+                    Add Your First Todo
+                  </Button>
+                )}
               </div>
             )}
           </div>

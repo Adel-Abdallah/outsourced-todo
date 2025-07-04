@@ -1,4 +1,3 @@
-
 import { TodoFilters as TodoFiltersType, TodoSort, Priority, TaskStatus } from '@/types/todo'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
@@ -89,7 +88,7 @@ export function TodoFilters({
   const hasActiveFilters = filters.search || filters.status || filters.priority
 
   return (
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+    <div>
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-lg font-semibold text-gray-900 flex items-center">
           <Filter className="h-5 w-5 mr-2 text-navy-700" />
